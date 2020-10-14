@@ -221,9 +221,9 @@ class Model
         $this->primaryKeys = $this->blueprint->primaryKey();
 
         // Process columns
-        foreach ($this->blueprint->columns() as $column) {
-            $this->parseColumn($column);
-        }
+//        foreach ($this->blueprint->columns() as $column) {
+//            $this->parseColumn($column);
+//        }
 
         if (! $this->loadRelations) {
             return;
