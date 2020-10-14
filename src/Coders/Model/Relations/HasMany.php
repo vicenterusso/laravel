@@ -53,7 +53,7 @@ class HasMany extends HasOneOrMany
                 break;
         }
 
-        if ($this->parent->usesSnakeAttributes()) {
+        if ($this->parent->usesSnakeRelationNames()) {
             return Str::snake($relationName);
         }
 

@@ -1001,6 +1001,15 @@ class Model
     /**
      * @return bool
      */
+    public function usesSnakeRelationNames()
+    {
+        return (bool) $this->config('snake_relationships', false);
+    }
+
+    //
+    /**
+     * @return bool
+     */
     public function doesNotUseSnakeAttributes()
     {
         return ! $this->usesSnakeAttributes();

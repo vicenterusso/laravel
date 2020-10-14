@@ -185,6 +185,20 @@ return [
 
         'snake_attributes' => true,
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Snake Relationships
+        |--------------------------------------------------------------------------
+        |
+        | Following Eloquent relationship naming convention by default (camelCase,
+        | but with the first letter lower case), if this option is true, all your
+        | related models with be snake cased
+        |
+        */
+
+        'snake_relationships' => false,
+
         /*
         |--------------------------------------------------------------------------
         | Indent options
