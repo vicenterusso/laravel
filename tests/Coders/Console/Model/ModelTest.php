@@ -1,8 +1,8 @@
 <?php
 
-use Reliese\Coders\Model\Factory;
-use Reliese\Coders\Model\Model;
-use Reliese\Meta\Blueprint;
+use VRusso\Coders\Model\Factory;
+use VRusso\Coders\Model\Model;
+use VRusso\Meta\Blueprint;
 
 class ModelTest extends TestCase
 {
@@ -56,8 +56,8 @@ class ModelTest extends TestCase
             new Factory(
                 \Mockery::mock(\Illuminate\Database\DatabaseManager::class),
                 \Mockery::mock(Illuminate\Filesystem\Filesystem::class),
-                \Mockery::mock(\Reliese\Support\Classify::class),
-                new \Reliese\Coders\Model\Config()
+                \Mockery::mock(\VRusso\Support\Classify::class),
+                new \VRusso\Coders\Model\Config()
             )
         );
 

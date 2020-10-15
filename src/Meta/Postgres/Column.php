@@ -1,6 +1,6 @@
 <?php
 
-namespace Reliese\Meta\Postgres;
+namespace VRusso\Meta\Postgres;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
@@ -9,7 +9,7 @@ use Illuminate\Support\Fluent;
  * Created by rwdim from cristians MySql original.
  * Date: 25/08/18 04:20 PM.
  */
-class Column implements \Reliese\Meta\Column
+class Column implements \VRusso\Meta\Column
 {
     /**
      * @var array

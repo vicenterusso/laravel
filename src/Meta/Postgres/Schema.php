@@ -1,9 +1,9 @@
 <?php
 
-namespace Reliese\Meta\Postgres;
+namespace VRusso\Meta\Postgres;
 
 use Illuminate\Support\Arr;
-use Reliese\Meta\Blueprint;
+use VRusso\Meta\Blueprint;
 use Illuminate\Support\Fluent;
 use Illuminate\Database\Connection;
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Connection;
  * Created by rwdim from cristians MySql original.
  * Date: 25/08/18 04:13 PM.
  */
-class Schema implements \Reliese\Meta\Schema
+class Schema implements \VRusso\Meta\Schema
 {
     /**
      * @var string
@@ -29,7 +29,7 @@ class Schema implements \Reliese\Meta\Schema
     protected $loaded = false;
 
     /**
-     * @var \Reliese\Meta\Blueprint[]
+     * @var \VRusso\Meta\Blueprint[]
      */
     protected $tables = [];
 
@@ -90,7 +90,7 @@ class Schema implements \Reliese\Meta\Schema
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      */
     protected function fillColumns(Blueprint $blueprint)
     {
@@ -117,7 +117,7 @@ class Schema implements \Reliese\Meta\Schema
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      */
     protected function fillConstraints(Blueprint $blueprint)
     {
@@ -162,7 +162,7 @@ class Schema implements \Reliese\Meta\Schema
 
     /**
      * @param array $relations
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      * @todo: Support named primary keys
      */
     protected function fillPrimaryKey($relations, Blueprint $blueprint)
@@ -185,7 +185,7 @@ class Schema implements \Reliese\Meta\Schema
 
     /**
      * @param array $indexes
-     * @param \Reliese\Meta\Blueprint $blueprintx
+     * @param \VRusso\Meta\Blueprint $blueprintx
      */
     protected function fillIndexes($indexes, Blueprint $blueprint)
     {
@@ -206,7 +206,7 @@ class Schema implements \Reliese\Meta\Schema
 
     /**
      * @param array $relations
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      * @todo: Support named foreign keys
      */
     protected function fillRelations($relations, Blueprint $blueprint)
@@ -301,7 +301,7 @@ class Schema implements \Reliese\Meta\Schema
     }
 
     /**
-     * @return \Reliese\Meta\Blueprint[]
+     * @return \VRusso\Meta\Blueprint[]
      */
     public function tables()
     {
@@ -311,7 +311,7 @@ class Schema implements \Reliese\Meta\Schema
     /**
      * @param string $table
      *
-     * @return \Reliese\Meta\Blueprint
+     * @return \VRusso\Meta\Blueprint
      */
     public function table($table)
     {
@@ -331,7 +331,7 @@ class Schema implements \Reliese\Meta\Schema
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint $table
+     * @param \VRusso\Meta\Blueprint $table
      *
      * @return array
      */

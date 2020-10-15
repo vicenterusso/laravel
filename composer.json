@@ -1,21 +1,20 @@
 {
-    "name": "reliese/laravel",
-    "description": "Reliese Components for Laravel Framework code generation.",
-    "keywords": ["reliese", "laravel"],
-    "homepage": "http://cristianllanos.com",
+    "name": "vicenterusso/laravel-model-generator",
+    "description": "Model code generation for Laravel Framework.",
+    "keywords": ["vicenterusso", "laravel", "model", "generator", "relations", "relationships"],
     "support": {
-        "issues": "https://github.com/reliese/laravel/issues",
-        "source": "https://github.com/reliese/laravel"
+        "issues": "https://github.com/vicenterusso/laravel-model-generator/issues",
+        "source": "https://github.com/vicenterusso/laravel-model-generator"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": "Cristian Llanos",
-            "email": "cristianllanos@outlook.com"
+            "name": "Vicente Russo",
+            "email": "vicente.russo@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.0",
         "doctrine/dbal": ">=2.5",
         "illuminate/support": ">=5.1",
         "illuminate/database": ">=5.1",
@@ -30,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Reliese\\": "src/"
+            "VRusso\\": "src/"
         }
     },
     "autoload-dev": {
@@ -44,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Reliese\\Coders\\CodersServiceProvider"
+                "VRusso\\Coders\\CodersServiceProvider"
             ]
         }
     }

@@ -5,13 +5,13 @@
  * Date: 05/09/16 11:41 PM.
  */
 
-namespace Reliese\Coders\Model\Relations;
+namespace VRusso\Coders\Model\Relations;
 
 use Illuminate\Support\Str;
 use Reliese\Support\Dumper;
 use Illuminate\Support\Fluent;
-use Reliese\Coders\Model\Model;
-use Reliese\Coders\Model\Relation;
+use VRusso\Coders\Model\Model;
+use VRusso\Coders\Model\Relation;
 
 class BelongsTo implements Relation
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Reliese\Coders;
+namespace VRusso\Coders;
 
-use Reliese\Support\Classify;
-use Reliese\Coders\Model\Config;
+use VRusso\Support\Classify;
+use VRusso\Coders\Model\Config;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Reliese\Coders\Console\CodeModelsCommand;
-use Reliese\Coders\Model\Factory as ModelFactory;
+use VRusso\Coders\Console\CodeModelsCommand;
+use VRusso\Coders\Model\Factory as ModelFactory;
 
 class CodersServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,7 @@ class CodersServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../../config/models.php' => config_path('models.php'),
-            ], 'reliese-models');
+            ], 'vrusso-models');
 
             $this->commands([
                 CodeModelsCommand::class,

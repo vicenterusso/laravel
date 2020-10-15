@@ -5,9 +5,9 @@
  * Date: 10/10/16 11:46 PM.
  */
 
-namespace Reliese\Coders\Model;
+namespace VRusso\Coders\Model;
 
-use Reliese\Meta\Blueprint;
+use VRusso\Meta\Blueprint;
 
 class Mutator
 {
@@ -40,7 +40,7 @@ class Mutator
 
     /**
      * @param string $column
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      *
      * @return mixed
      */
