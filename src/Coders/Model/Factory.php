@@ -5,12 +5,12 @@
  * Date: 19/09/16 11:58 PM.
  */
 
-namespace Reliese\Coders\Model;
+namespace VRusso\Coders\Model;
 
 use Illuminate\Support\Str;
-use Reliese\Meta\Blueprint;
-use Reliese\Support\Classify;
-use Reliese\Meta\SchemaManager;
+use VRusso\Meta\Blueprint;
+use VRusso\Support\Classify;
+use VRusso\Meta\SchemaManager;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\DatabaseManager;
 
@@ -22,7 +22,7 @@ class Factory
     private $db;
 
     /**
-     * @var \Reliese\Meta\SchemaManager
+     * @var \VRusso\Meta\SchemaManager
      */
     protected $schemas = [];
 
@@ -32,22 +32,22 @@ class Factory
     protected $files;
 
     /**
-     * @var \Reliese\Support\Classify
+     * @var \VRusso\Support\Classify
      */
     protected $class;
 
     /**
-     * @var \Reliese\Coders\Model\Config
+     * @var \VRusso\Coders\Model\Config
      */
     protected $config;
 
     /**
-     * @var \Reliese\Coders\Model\ModelManager
+     * @var \VRusso\Coders\Model\ModelManager
      */
     protected $models;
 
     /**
-     * @var \Reliese\Coders\Model\Mutator[]
+     * @var \VRusso\Coders\Model\Mutator[]
      */
     protected $mutators = [];
 
@@ -56,8 +56,8 @@ class Factory
      *
      * @param \Illuminate\Database\DatabaseManager $db
      * @param \Illuminate\Filesystem\Filesystem $files
-     * @param \Reliese\Support\Classify $writer
-     * @param \Reliese\Coders\Model\Config $config
+     * @param \VRusso\Support\Classify $writer
+     * @param \VRusso\Coders\Model\Config $config
      */
     public function __construct(DatabaseManager $db, Filesystem $files, Classify $writer, Config $config)
     {
@@ -68,7 +68,7 @@ class Factory
     }
 
     /**
-     * @return \Reliese\Coders\Model\Mutator
+     * @return \VRusso\Coders\Model\Mutator
      */
     public function mutate()
     {
@@ -76,7 +76,7 @@ class Factory
     }
 
     /**
-     * @return \Reliese\Coders\Model\ModelManager
+     * @return \VRusso\Coders\Model\ModelManager
      */
     protected function models()
     {
@@ -120,7 +120,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      *
      * @return bool
      */
@@ -136,7 +136,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint $blueprint
+     * @param \VRusso\Meta\Blueprint $blueprint
      *
      * @return bool
      */
@@ -183,7 +183,7 @@ class Factory
      *
      * @param bool $withRelations
      *
-     * @return \Reliese\Coders\Model\Model
+     * @return \VRusso\Coders\Model\Model
      */
     public function makeModel($schema, $table, $withRelations = true)
     {
@@ -193,7 +193,7 @@ class Factory
     /**
      * @param string $schema
      *
-     * @return \Reliese\Meta\Schema
+     * @return \VRusso\Meta\Schema
      */
     public function makeSchema($schema)
     {
@@ -201,7 +201,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @todo: Delegate workload to SchemaManager and ModelManager
      *
@@ -228,7 +228,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      * @param string $name
      *
      * @return string
@@ -244,7 +244,7 @@ class Factory
 
     /**
      * @param string $template
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return mixed
      */
@@ -333,7 +333,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return string
      */
@@ -363,7 +363,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return string
      */
@@ -477,7 +477,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      * @param array $custom
      *
      * @return string
@@ -504,7 +504,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return bool
      */
@@ -514,7 +514,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
@@ -551,7 +551,7 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return string
      */
@@ -574,11 +574,11 @@ class Factory
     }
 
     /**
-     * @param \Reliese\Meta\Blueprint|null $blueprint
+     * @param \VRusso\Meta\Blueprint|null $blueprint
      * @param string $key
      * @param mixed $default
      *
-     * @return mixed|\Reliese\Coders\Model\Config
+     * @return mixed|\VRusso\Coders\Model\Config
      */
     public function config(Blueprint $blueprint = null, $key = null, $default = null)
     {

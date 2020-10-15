@@ -8,7 +8,7 @@
 namespace VRusso\Coders\Model\Relations;
 
 use Illuminate\Support\Str;
-use Reliese\Support\Dumper;
+use VRusso\Support\Dumper;
 use Illuminate\Support\Fluent;
 use VRusso\Coders\Model\Model;
 use VRusso\Coders\Model\Relation;
@@ -21,12 +21,12 @@ class BelongsTo implements Relation
     protected $command;
 
     /**
-     * @var \Reliese\Coders\Model\Model
+     * @var \VRusso\Coders\Model\Model
      */
     protected $parent;
 
     /**
-     * @var \Reliese\Coders\Model\Model
+     * @var \VRusso\Coders\Model\Model
      */
     protected $related;
 
@@ -34,8 +34,8 @@ class BelongsTo implements Relation
      * BelongsToWriter constructor.
      *
      * @param \Illuminate\Support\Fluent $command
-     * @param \Reliese\Coders\Model\Model $parent
-     * @param \Reliese\Coders\Model\Model $related
+     * @param \VRusso\Coders\Model\Model $parent
+     * @param \VRusso\Coders\Model\Model $related
      */
     public function __construct(Fluent $command, Model $parent, Model $related)
     {

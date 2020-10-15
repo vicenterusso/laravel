@@ -63,7 +63,7 @@ class Mutator
 
     /**
      * @param string $attribute
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return string
      */
@@ -86,7 +86,7 @@ class Mutator
 
     /**
      * @param string $attribute
-     * @param \Reliese\Coders\Model\Model $model
+     * @param \VRusso\Coders\Model\Model $model
      *
      * @return string
      */
