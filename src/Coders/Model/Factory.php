@@ -164,17 +164,35 @@ class Factory
         $model = $this->makeModel($schema, $table);
         $template = $this->prepareTemplate($model, 'model');
 
+        $preserved_functions = $this->preserveModifications($model, 'functions');
+        $preserved_variables = $this->preserveModifications($model, 'variables');
+
         $file = $this->fillTemplate($template, $model);
 
         if ($model->indentWithSpace()) {
             $file = str_replace("\t", str_repeat(' ', $model->indentWithSpace()), $file);
         }
 
+        
+        if(!empty($preserved_variables)) {
+            $file = str_replace("{{preserved_variables}}", implode("\n"."\n",$preserved_variables), $file);
+        } else {
+            $file = str_replace("{{preserved_variables}}", '', $file);
+        }
+
+        if(!empty($preserved_functions)) {
+            $file = str_replace("{{preserved_functions}}", implode("\n"."\n",$preserved_functions), $file);
+        } else {
+            $file = str_replace("{{preserved_functions}}", '', $file);
+        }
+
+
         $this->files->put($this->modelPath($model, $model->usesBaseFiles() ? ['Base'] : []), $file);
 
         if ($this->needsUserFile($model)) {
             $this->createUserFile($model);
         }
+
     }
 
     /**
@@ -241,6 +259,73 @@ class Factory
 
         return $this->files->get($file);
     }
+
+
+    /**
+     * @param \VRusso\Coders\Model\Model $model
+     *
+     * @return array
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    protected function preserveModifications(Model $model, $type = 'functions')
+    {
+
+        if(!$this->files->exists($this->modelPath($model))) {
+            return array();
+        }
+
+        $contents = $this->files->get($this->modelPath($model)); //file_get_contents($this->modelPath($model));
+        if($type === 'functions')
+        {
+
+            // TODO: https://github.com/Roave/BetterReflection
+            // Sem DOC BLOCK com o nome da funcao separado (pra puxar o DOC via reflection)
+            //$re = '/(.{4}\#\[Preserve\]\s+(?:public|protected|private)(?: )(?:function){1} )((\w)+)(( ){0,1}\((.)+(}){1})/sU';
+
+            // Sem DOC BLOCK
+            $re = '/.{4}\#\[Preserve\]\s+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
+
+
+            //$re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
+        
+        
+        }
+        else if($type === 'variables')
+        {
+            $re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|protected|private){0,1}(?: )(?:\$){1}(?:.)+(?:(?:;){1})/sU';
+        }
+
+        $matches = array();
+        $preserve_blocks = array();
+        preg_match_all($re, $contents, $matches);
+
+        foreach($matches[0] as $match) {
+            $preserve_blocks[] = $match;
+        }
+
+
+        $preserved_name = ucfirst($type);
+$header = <<<HEAD
+
+    /*
+    |--------------------------------------------------------------------------
+    | Preserved $preserved_name
+    |--------------------------------------------------------------------------
+    */
+
+HEAD;
+
+
+        if(!empty($preserve_blocks)) {
+            array_unshift($preserve_blocks, $header);
+        }
+
+
+        return $preserve_blocks;
+
+    }
+
+
 
     /**
      * @param string $template
