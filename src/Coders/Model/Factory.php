@@ -280,10 +280,10 @@ class Factory
 
             // TODO: https://github.com/Roave/BetterReflection
             // Sem DOC BLOCK com o nome da funcao separado (pra puxar o DOC via reflection)
-            //$re = '/(.{4}\#\[Preserve\]\s+(?:public|protected|private)(?: )(?:function){1} )((\w)+)(( ){0,1}\((.)+(}){1})/sU';
+            //$re = '/(.{1}\#\[Preserve\]\s+(?:public|protected|private)(?: )(?:function){1} )((\w)+)(( ){0,1}\((.)+(}){1})/sU';
 
             // Sem DOC BLOCK
-            $re = '/.{4}\#\[Preserve\]\s+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
+            $re = '/.{1}\#\[Preserve\]\s+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
 
 
             //$re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
