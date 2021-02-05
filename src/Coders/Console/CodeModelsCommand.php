@@ -13,8 +13,8 @@ class CodeModelsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'code:models
-                            {--s|schema= : The name of the MySQL database}
+    protected $signature = 'info:models
+                            {--s|schema= : The name of the database}
                             {--c|connection= : The name of the connection}
                             {--t|table= : The name of the table}';
 
@@ -57,6 +57,13 @@ class CodeModelsCommand extends Command
         $connection = $this->getConnection();
         $schema = $this->getSchema($connection);
         $table = $this->getTable();
+
+        // ray("handle");
+
+        // ray($connection);
+        // ray($schema);
+        // ray($table);
+
 
         // Check whether we just need to generate one table
         if ($table) {
