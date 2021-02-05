@@ -221,9 +221,9 @@ class Model
         $this->primaryKeys = $this->blueprint->primaryKey();
 
         // Process columns
-//        foreach ($this->blueprint->columns() as $column) {
-//            $this->parseColumn($column);
-//        }
+       foreach ($this->blueprint->columns() as $column) {
+           $this->parseColumn($column);
+       }
 
         if (! $this->loadRelations) {
             return;
@@ -252,7 +252,12 @@ class Model
         // TODO: Check type cast is OK
         $cast = $column->type;
 
+        $array_casts = $this->config('casts', []);
         $propertyName = $this->usesPropertyConstants() ? 'self::'.strtoupper($column->name) : $column->name;
+
+        // if(!array_key_exists($propertyName, $array_casts)) {
+        //     return ;
+        // }
 
         // Due to some casting problems when converting null to a Carbon instance,
         // we are going to treat Soft Deletes field as string.
@@ -265,9 +270,9 @@ class Model
             $this->dates[] = $propertyName;
         }
         // Track attribute casts
-        elseif ($cast != 'string') {
-            $this->casts[$propertyName] = $cast;
-        }
+        // elseif ($cast != 'string') {
+        //     $this->casts[$propertyName] = $cast;
+        // }
 
         foreach ($this->config('casts', []) as $pattern => $casting) {
             if (Str::is($pattern, $column->name)) {
