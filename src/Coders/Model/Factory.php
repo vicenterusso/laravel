@@ -356,10 +356,23 @@ HEAD;
         $usedClasses = array_merge($usedClasses, $this->extractUsedClasses($body));
         $template = str_replace('{{body}}', $body, $template);
 
+        $all_fields = \Schema::getColumnListing($model->getBlueprint()->table());
+
+        $labels = '';
+        foreach($all_fields as $key => $field) {
+            $prefix = '';
+            $sufix = '';
+            if ($key !== array_key_first($all_fields)) $prefix = '        ';
+            if ($key !== array_key_last($all_fields)) $sufix = "\n";
+            $labels .= $prefix."'$field' => '".Str::title(str_replace('_', ' ', $field))."',".$sufix;
+        }
+
+        $template = str_replace('{{$labels}}', $labels, $template);
+
         $usedClasses = array_unique($usedClasses);
         $usedClassesSection = $this->formatUsedClasses(
             $model->getBaseNamespace(),
-            $usedClasses, 
+            $usedClasses,
             $model->getClassName()
         );
         $template = str_replace('{{imports}}', $usedClassesSection, $template);
