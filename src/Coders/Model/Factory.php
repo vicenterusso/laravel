@@ -169,10 +169,6 @@ class Factory
 
         $file = $this->fillTemplate($template, $model);
 
-        if ($model->indentWithSpace()) {
-            $file = str_replace("\t", str_repeat(' ', $model->indentWithSpace()), $file);
-        }
-
         
         if(!empty($preserved_variables)) {
             $file = str_replace("{{preserved_variables}}", implode("\n"."\n",$preserved_variables), $file);
@@ -185,6 +181,16 @@ class Factory
         } else {
             $file = str_replace("{{preserved_functions}}", '', $file);
         }
+
+
+        if ($model->indentWithSpace()) {
+            $file = str_replace("\t", str_repeat(' ', $model->indentWithSpace()), $file);
+        }
+
+        $file = str_replace("{{preserved_variables}}", '', $file);
+
+        // Alinha corretamente
+        $file = str_replace(" #[Preserve]", '    #[Preserve]', $file);
 
 
         $this->files->put($this->modelPath($model, $model->usesBaseFiles() ? ['Base'] : []), $file);
@@ -283,7 +289,7 @@ class Factory
             //$re = '/(.{1}\#\[Preserve\]\s+(?:public|protected|private)(?: )(?:function){1} )((\w)+)(( ){0,1}\((.)+(}){1})/sU';
 
             // Sem DOC BLOCK
-            $re = '/.{1}\#\[Preserve\]\s+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
+            $re = '/.{1}\#\[Preserve\]\s+(?:public|public static|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
 
 
             //$re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|protected|private){1}(?: )(?:function){1}(?:.)+(?:(?:}){1})/sU';
@@ -292,7 +298,7 @@ class Factory
         }
         else if($type === 'variables')
         {
-            $re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|protected|private){0,1}(?: )(?:\$){1}(?:.)+(?:(?:;){1})/sU';
+            $re = '/(?:(?:\/\*\*){1}(?:.){0,100}(?:\*\/)*(?:\n)){0,1}(?:\s){4}\#\[Preserve\]\n{1}(?:\s)+(?:public|public static|protected|private){0,1}(?: )(?:\$){1}(?:.)+(?:(?:;){1})/sU';
         }
 
         $matches = array();
@@ -499,9 +505,9 @@ HEAD;
         }
 
         // When table is not plural, append the table name
-        if ($model->needsTableName()) {
-            $body .= $this->class->field('table', $model->getTableForQuery());
-        }
+        // if ($model->needsTableName()) {
+        //     $body .= $this->class->field('table', $model->getTableForQuery());
+        // }
 
         if ($model->hasCustomPrimaryKey()) {
             $body .= $this->class->field('primaryKey', $model->getPrimaryKey());
