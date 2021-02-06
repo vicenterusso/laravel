@@ -83,7 +83,6 @@ class Schema implements \VRusso\Meta\Schema
     {
 
         $db_schema = $this->connection->getConfig('schema');
-        ray($db_schema);
 
         $rows = $this->arraify($this->connection->select(
             "SELECT * FROM pg_tables where schemaname='".$db_schema."'"
