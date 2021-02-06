@@ -58,6 +58,13 @@ class CodeModelsCommand extends Command
         $schema = $this->getSchema($connection);
         $table = $this->getTable();
 
+        // ray("handle");
+
+        // ray($connection);
+        // ray($schema);
+        // ray($table);
+
+
         // Check whether we just need to generate one table
         if ($table) {
             $this->models->on($connection)->create($schema, $table);

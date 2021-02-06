@@ -81,8 +81,11 @@ class Schema implements \VRusso\Meta\Schema
      */
     protected function fetchTables()
     {
+
+        $db_schema = $this->connection->getConfig('schema');
+
         $rows = $this->arraify($this->connection->select(
-            'SELECT * FROM pg_tables where schemaname=\'public\''
+            "SELECT * FROM pg_tables where schemaname='".$db_schema."'"
         ));
         $names = array_column($rows, 'tablename');
 
